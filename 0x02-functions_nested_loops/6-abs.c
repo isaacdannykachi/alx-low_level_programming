@@ -3,7 +3,6 @@
  * _abs - computes the absolute value of an integer
  *
  * @c: computed value
- * @int: abs val
  *
  * Return: (0) success or absolute value
  */

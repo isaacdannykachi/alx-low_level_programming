@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 /**
- * print_diagsum - Entry
+ * print_diagsums - Entry
  * @a: array
  * @size: size of array
  *

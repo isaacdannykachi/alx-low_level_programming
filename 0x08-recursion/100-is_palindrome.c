@@ -1,6 +1,6 @@
 #include "main.h"
 #include <string.h>
-int is_palindrome_recursive();
+int is_palindrome_recursive(void);
 /**
  * is_palindrome - Entry
  * @s: string

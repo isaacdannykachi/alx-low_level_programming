@@ -1,35 +1,48 @@
 #include "main.h"
-#include <string.h>
-int is_palindrome_recursive(void);
+
 /**
- * is_palindrome - Entry
- * @s: string
- *
- * Return: returns 1 if a string is palindrome 0 otherwise.
+ * palind2 - obtains length of a
+ * @a: string
+ * @l: integer to count length
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
  */
+
+int palind2(char *a, int l)
+{
+	if (*a == 0)
+		return (l - 1);
+	return (palind2(a + 1, l + 1));
+}
+
+/**
+ * palind3 - compares string vs string reverse
+ * @a: string
+ * @l: length
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
+ */
+
+int palind3(char *a, int l)
+{
+	if (*a != *(a + l))
+		return (0);
+	else if (*a == 0)
+		return (1);
+	return (palind3(a + 1, l - 2));
+}
+
+/**
+ * is_palindrome - checks if a string is a palindrome
+ * @s: string to evaluate
+ * Return: On success 1.
+ * On error, -1 is returned, and errno is set appropriately.
+ */
+
 int is_palindrome(char *s)
 {
-	int len = strlen(s);
+		int l;
 
-	return (is_palindrome_recursive(s, 0, len - 1));
-}
-/**
- * is_palindrome_recursive - recursive func
- * @s: string
- * @strt: start of the string
- * @end: end of the string
- *
- * Return: 1 if palindrome and 0 otherwise
- */
-int is_palindrome_recursive(char *s, int strt, int end)
-{
-	if (strt >= end)
-	{
-		return (1);
-	}
-	if (s[strt] != s[end])
-	{
-		return (0);
-	}
-	return (is_palindrome_recursive(s, strt + 1, end - 1));
+			l = palind2(s, 0);
+				return (palind3(s, l));
 }

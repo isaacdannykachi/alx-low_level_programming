@@ -1,46 +1,35 @@
 #include <stdio.h>
 #include <stdlib.h>
-/**
- * print_opcodes - print opr code of main func
- * @num_bytes: number bytes
- *
- */
-void print_opcodes(int num_bytes)
-{
-	int i;
-	unsigned char *opcodes;
-
-	opcodes = (unsigned char *)print_opcodes;
-
-	for (i = 0; i < num_bytes; i++)
-		printf("%02x ", opcodes[i]);
-	printf("\n");
-}
 
 /**
- * main - Entry
- * @argc: char arg
- * @argv: array of char
- *
- * Return: 0 if success otherwise fail
- */
+* main - Prints the opcodes of this function
+* @argc: The number of command-line arguments
+* @argv: The command-line arguments
+* Return: 0 if successful
+*/
+
 int main(int argc, char *argv[])
 {
-	int num_bytes;
+	int n_bytes, i;
+	int (*prog)(int, char **) = &main;
 
-	if (argc != 2)
+	if (argc == 2)
+	{
+		n_bytes = atoi(argv[1]);
+		if (n_bytes < 0)
+		{
+			printf("Error\n");
+			exit(2);
+		}
+		for (i = 0; i < n_bytes; i++)
+			printf("%02x%c",
+					(unsigned char)*((char *)prog + i), i < n_bytes - 1 ? ' ' : '\n');
+	}
+	else
 	{
 		printf("Error\n");
-		return (1);
+		exit(1);
 	}
 
-	num_bytes = atoi(argv[1]);
-
-	if (num_bytes < 0)
-	{
-		printf("Error\n");
-		return (2);
-	}
-	print_opcodes(num_bytes);
 	return (0);
 }
